@@ -5,11 +5,29 @@ import { useState } from 'react';
 function App() {
   const [message, setMessage] = useState('test');
 
+  const handleDisplayMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setMessage(e.target.value);
+  };
+
   return (
     <div className="App">
       <h1>Zustand-Demo-React-Vite-Typescript</h1>
       <p>Welcome to this Site!</p>
-      <p>Message: {message}</p>
+      <main>
+        <section className="controlArea">
+          <div className="data">
+            <label htmlFor="">Message:</label>
+            <input
+              type="text"
+              value={message}
+              onChange={(e) => handleDisplayMessage(e)}
+            />
+            <p>
+              Message: <span>{message}</span>
+            </p>
+          </div>
+        </section>
+      </main>
     </div>
   );
 }

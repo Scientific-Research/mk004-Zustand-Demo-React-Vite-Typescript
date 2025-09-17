@@ -1,0 +1,118 @@
+$dataColor: yellow;
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  color: #ccc;
+  background-color: #333;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  padding: 1rem;
+  margin: 1rem;
+  font-size: 1.5rem;
+
+  .App {
+    h1 {
+      color: rgb(94, 116, 217);
+      margin: 0 0 1rem 0;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      color: yellow;
+    }
+
+    main {
+      display: flex;
+      gap: 1rem;
+
+      section.controlArea {
+        width: 30rem;
+
+        div.data {
+          background-color: #434343;
+          margin: 0 0 1rem 0;
+          padding: 1rem;
+          border-radius: 0.5rem;
+
+          label {
+            margin: 0 0 0.5rem 0;
+            display: block;
+            color: aqua;
+          }
+
+          input {
+            width: 98%;
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+          }
+
+          button {
+            margin: 0 0.2rem 0.2rem 0;
+          }
+
+          p {
+            color: tomato;
+            span {
+              color: bisque;
+            }
+          }
+        }
+      }
+
+      section.dataArea {
+        h2 {
+          margin: 0 0 1rem 0;
+        }
+
+        .infoBox {
+          background-color: #777;
+          padding: 1rem;
+          width: 28rem;
+          border-radius: 1rem;
+          color: #222;
+
+          label {
+            font-weight: bold;
+          }
+
+          .theValue {
+            color: $dataColor;
+          }
+
+          div.row {
+            margin: 0 0 0.5rem 0;
+
+            ul {
+              margin: 0.5rem 0 0 -0.5rem;
+
+              li {
+                color: $dataColor;
+              }
+            }
+
+            .spinner {
+              font-size: 2rem;
+              color: #444;
+              animation: spin infinite 2s linear;
+            }
+
+            @keyframes spin {
+              from {
+                transform: rotate(0deg);
+              }
+
+              to {
+                transform: rotate(360deg);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
