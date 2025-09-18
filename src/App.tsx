@@ -61,6 +61,19 @@ function App() {
           </div>
         </section>
 
+        {/* CURRENT USER STATUS */}
+        <div className="data">
+          <label>Object:</label>
+          <div>
+            <button onClick={() => store.toggleCurrentUserStatusOnline()}>
+              toggle online status
+            </button>
+            <button onClick={() => store.toggleCurrentUserStatusEmail()}>
+              toggle email status
+            </button>
+          </div>
+        </div>
+
         <section className="dataArea">
           <InfoBox></InfoBox>
           {/* <InfoBox message = {message}></InfoBox> */}
