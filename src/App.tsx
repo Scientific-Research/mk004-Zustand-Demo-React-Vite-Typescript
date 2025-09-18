@@ -21,6 +21,7 @@ function App() {
       <p>color 1: {store.colors[0]}</p>
       <main>
         <section className="controlArea">
+          {/* MESSAGE */}
           <div className="data">
             <label htmlFor="">Message:</label>
             <input
@@ -33,6 +34,20 @@ function App() {
               Message: <span>{message}</span>
               {/* Message: <span>{store.message}</span> */}
             </p>
+          </div>
+
+          {/* COLORS */}
+          <div className="data">
+            <label>Colors:</label>
+            <div>
+              <button onClick={() => store.addColor('blue')}>blue</button>
+              <button onClick={() => store.addColor('red')}>red</button>
+              <button onClick={() => store.addColor('yellow')}>yellow</button>
+            </div>
+            <button onClick={() => store.deleteColor()}>delete color</button>
+            <button onClick={() => store.setColors([])}>
+              delete all colors
+            </button>
           </div>
         </section>
 
