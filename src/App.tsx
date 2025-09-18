@@ -1,5 +1,6 @@
 // import './App.css'
 // import { useState } from 'react';
+import { useRef, useEffect } from 'react';
 import { InfoBox } from './components/InfoBox';
 import { useStore } from './store';
 
@@ -12,6 +13,15 @@ function App() {
     setMessage(e.target.value);
     // store.setMessage(e.target.value);
   };
+
+  // TECHBOOKS
+  const techBookSearchRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (techBookSearchRef.current !== null) {
+      techBookSearchRef.current.focus();
+    }
+  }, [store.techBooks]);
 
   return (
     <div className="App">
@@ -72,6 +82,33 @@ function App() {
               </button>
             </div>
           </div>
+
+          {/* TECHBOOKS */}
+          {store.techBooks.length === 0 && (
+            <div className="data">
+              <label>Load data</label>
+              <div>
+                <button
+                  disabled={store.techBooksAreLoading}
+                  onClick={() => store.loadTechBooks()}
+                >
+                  load tech books
+                </button>
+              </div>
+            </div>
+          )}
+
+          {store.techBooks.length > 0 && (
+            <div className="data">
+              <label>Search tech books:</label>
+              <input
+                type="text"
+                ref={techBookSearchRef}
+                value={store.techBookSearch}
+                onChange={(e) => store.setTechBookSearch(e.target.value)}
+              />
+            </div>
+          )}
         </section>
 
         <section className="dataArea">

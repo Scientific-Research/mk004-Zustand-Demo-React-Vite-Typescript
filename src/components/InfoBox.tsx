@@ -1,4 +1,6 @@
+import React from 'react';
 import { useStore } from '../store';
+import { FaSpinner } from 'react-icons/fa';
 
 // interface IMessage {
 //   message: string;
@@ -41,6 +43,29 @@ export const InfoBox = () => {
         <span className="theValue">
           {store.currentUserStatus.emailIsConfirmed ? 'yes' : 'no'}
         </span>
+      </div>
+
+      {/* TECHBOOKS */}
+      <div className="row">
+        <label>TechBooks:</label>
+        {store.techBooksAreLoading && (
+          <p>
+            <FaSpinner className="spinner" />
+          </p>
+        )}
+        <ul>
+          {store.techBooks.map((techBook, i) => {
+            return (
+              <React.Fragment key={i}>
+                {techBook.title
+                  .toLowerCase()
+                  .includes(store.techBookSearch.toLowerCase()) && (
+                  <li key={i}>{techBook.title}</li>
+                )}
+              </React.Fragment>
+            );
+          })}
+        </ul>
       </div>
     </div>
   );

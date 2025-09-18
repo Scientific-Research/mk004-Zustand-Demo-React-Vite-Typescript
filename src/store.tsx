@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import axios from 'axios';
 
 interface IStore {
   // message
@@ -22,6 +23,20 @@ interface IStore {
     isOnline: boolean;
     emailIsConfirmed: boolean;
   };
+
+  // TechBooks
+  techBooks: ITechBook[];
+  loadTechBooks: () => void;
+  techBooksAreLoading: boolean;
+  techBookSearch: string;
+  setTechBookSearch: (message: string) => void;
+}
+
+export interface ITechBook {
+  idCode: string;
+  title: string;
+  description: string;
+  language: string;
 }
 
 export const useStore = create<IStore>((set) => ({
@@ -61,6 +76,7 @@ export const useStore = create<IStore>((set) => ({
       _state.currentUserStatus.isOnline = !_state.currentUserStatus.isOnline;
       return _state;
     }),
+
   toggleCurrentUserStatusEmail: () =>
     set((state) => {
       const _state = { ...state };
@@ -68,4 +84,39 @@ export const useStore = create<IStore>((set) => ({
         !_state.currentUserStatus.emailIsConfirmed;
       return _state;
     }),
+
+  // TechBooks
+  techBooks: [],
+  loadTechBooks: () => {
+    set((state) => {
+      const _state = { ...state };
+      _state.techBooksAreLoading = true;
+      return _state;
+    });
+    setTimeout(async () => {
+      const rawTechBooks = (
+        await axios.get('https://edwardtanguay.vercel.app/share/techBooks.json')
+      ).data;
+      const _techBooks: ITechBook[] = [];
+      rawTechBooks.forEach((rawTechBook: any) => {
+        const techBook: ITechBook = {
+          idCode: rawTechBook.idCode,
+          title: rawTechBook.title,
+          description: rawTechBook.description,
+          language: rawTechBook.language,
+        };
+        _techBooks.push(techBook);
+      });
+      set((state) => {
+        const _state = { ...state };
+        _state.techBooks = _techBooks;
+        _state.techBooksAreLoading = false;
+        return _state;
+      });
+    }, 2000); // emulate long loading time
+  },
+  techBooksAreLoading: false,
+  techBookSearch: '',
+  setTechBookSearch: (techBookSearch: string) =>
+    set((state) => ({ ...state, techBookSearch: techBookSearch })),
 }));
