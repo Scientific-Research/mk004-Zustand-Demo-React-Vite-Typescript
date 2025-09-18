@@ -7,6 +7,9 @@ interface IStore {
 
   // colors
   colors: string[];
+  setColors: (colors: string[]) => void;
+  addColor: (color: string) => void;
+  deleteColor: () => void;
 }
 
 export const useStore = create<IStore>((set) => ({
@@ -16,4 +19,12 @@ export const useStore = create<IStore>((set) => ({
 
   // colors
   colors: ['blue', 'white', 'red'],
+
+  setColors: (colors) => set((state) => ({ ...state, colors })),
+
+  addColor: (color) =>
+    set((state) => ({ ...state, colors: [...state.colors, color] })),
+
+  deleteColor: () =>
+    set((state) => ({ ...state, colors: state.colors.slice(0, -1) })),
 }));
