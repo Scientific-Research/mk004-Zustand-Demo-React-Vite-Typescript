@@ -17,6 +17,8 @@ function App() {
     <div className="App">
       <h1>Zustand-Demo-React-Vite-Typescript</h1>
       <p>Welcome to this Site!</p>
+
+      <p>color 1: {store.colors[0]}</p>
       <main>
         <section className="controlArea">
           <div className="data">
