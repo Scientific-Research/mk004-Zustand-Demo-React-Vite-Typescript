@@ -18,7 +18,7 @@ export const useStore = create<IStore>((set) => ({
   setMessage: (message) => set((state) => ({ ...state, message })),
 
   // colors
-  colors: ['blue', 'white', 'red'],
+  colors: ['blue', 'white', 'green', 'red'],
 
   setColors: (colors) => set((state) => ({ ...state, colors })),
 
