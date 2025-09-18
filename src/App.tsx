@@ -49,6 +49,16 @@ function App() {
               delete all colors
             </button>
           </div>
+
+          {/* MULTIPLE VALUES */}
+          <div className="data">
+            <label>Change multiple values:</label>
+            <div>
+              <button onClick={() => store.deleteVowelsAndColorRed()}>
+                delete vowels from message and color red from colors
+              </button>
+            </div>
+          </div>
         </section>
 
         <section className="dataArea">
