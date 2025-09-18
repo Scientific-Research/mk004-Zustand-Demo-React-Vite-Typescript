@@ -45,7 +45,7 @@ function App() {
               <button onClick={() => store.addColor('yellow')}>yellow</button>
             </div>
             <button onClick={() => store.deleteColor()}>delete color</button>
-            <button onClick={() => store.setColors([])}>
+            <button onClick={() => store.deleteAllColors([])}>
               delete all colors
             </button>
           </div>
