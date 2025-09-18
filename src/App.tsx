@@ -35,7 +35,8 @@ function App() {
         </section>
 
         <section className="dataArea">
-          <InfoBox message={message}></InfoBox>
+          <InfoBox></InfoBox>
+          {/* <InfoBox message = {message}></InfoBox> */}
           {/* <InfoBox message={store.message}></InfoBox> */}
         </section>
       </main>
